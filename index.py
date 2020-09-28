@@ -1,5 +1,6 @@
 from flask import Flask , render_template , request
-from portScan import portScanner
+import portScan
+from portScan import portScanner2
 app= Flask(__name__)
 
 @app.route('/')
@@ -9,8 +10,8 @@ def home():
 @app.route('/ports', methods=["GET","POST"])
 def ports():
     ip=request.form['ipaddress']
-    res=portScanner(ip)
+    res=portScanner2(ip)
     return render_template("port.html", len=len(res) , pO=res)
 
 
-app.run(debug= "true")
+app.run(debug= True)
