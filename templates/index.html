@@ -1,44 +1,57 @@
 <html>
-  <head>
+
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
     <link href="../static/css/main.css" rel="stylesheet" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="s003">
-      <form method="POST" action="xss">
-        <div class="inner-form">
-          <div class="input-field first-wrap">
-            <div class="input-select">
-              <select data-trigger="" name="choices-single-defaul">
+        <form method="POST" id="myform" action="">
+            <div class="inner-form">
+                <div class="input-field first-wrap">
+                    <div class="input-select">
+                        <select data-trigger="" name="choices-single-defaul" id="attack" onchange=setAction();>
                 <option placeholder="">What to Perform</option>
-                <option>XSS Test</option>
-                <option>SQL Injection check</option>
-                <option>Port Scan</option>
-                <option>Domain Scan</option>
+                <option value="xss">XSS Test</option>
+                <option value="sql">SQL Injection check</option>
+                <option value="ports">Port Scan</option>
+                <option value="domain">Domain Scan</option>
               </select>
-            </div>
-          </div>
-          <div class="input-field second-wrap">
-            <input id="search" name="ipaddress" type="text" placeholder="Enter your IP or web-adress" />
-          </div>
-          <div class="input-field third-wrap">
-            <button class="btn-search" type="button">
+                    </div>
+                </div>
+                <div class="input-field second-wrap">
+                    <input id="search" name="ipaddress" type="text" placeholder="Enter your IP or web-adress" />
+                </div>
+                <div class="input-field third-wrap">
+                    <button class="btn-search" type="submit" value="submit">
             </button>
-          </div>
-        </div>
-      </form>
+                </div>
+            </div>
+        </form>
     </div>
     <script src="../static/js/extention/choices.js"></script>
     <script>
-      const choices = new Choices('[data-trigger]',
-      {
-        searchEnabled: false,
-        itemSelectText: '',
-      });
+        const choices = new Choices('[data-trigger]', {
+            searchEnabled: false,
+            itemSelectText: '',
+        });
 
+        function setAction() {
+            var attackType = document.getElementById('attack').value;
+            // alert(attackType);
+            var formAction = document.getElementById('myform');
+            formAction.action = attackType;
+            // alert(formAction.action);
+        }
+        var attackType = document.getElementById('attack').value;
+        // alert(attackType);
+        var formAction = document.getElementById('myform');
+        formAction.action = attackType;
     </script>
-  </body>
+</body>
+
 </html>

@@ -67,7 +67,7 @@ def scan_xss(url):
     """
     # get all the forms from the URL
     forms = get_all_forms(url)
-    js_script = "<Script>alert('hi')</scripT>"
+    js_script = "<script>alert('hi')</scripT>"
     # returning value
     is_vulnerable = "0"
     # iterate over all forms
