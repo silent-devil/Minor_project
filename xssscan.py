@@ -1,82 +1,75 @@
 import requests
 from pprint import pprint
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup as bsoup
 from urllib.parse import urljoin
 
-def get_all_forms(url):
-    """Given a `url`, it returns all forms from the HTML content"""
-    soup = bs(requests.get(url).content, "html.parser")
+def extract_all_forms(url):
+    """It returns all the forms from a given url"""
+    soup = bsoup(requests.get(url).content, "html.parser")
     return soup.find_all("form")
 
-def get_form_details(form):
+def extract_form_details(form):
     """
-    This function extracts all possible useful information about an HTML `form`
+    To extract all possible information from a html form
     """
     details = {}
-    # get the form action (target url)
+    # extract the form action
     action = form.attrs.get("action").lower()
-    # get the form method (POST, GET, etc.)
+    # extract the form method e.g GET,POST etc
     method = form.attrs.get("method", "get").lower()
-    # get all the input details such as type and name
+    # extract all the input details such as type and name
     inputs = []
     for input_tag in form.find_all("input"):
         input_type = input_tag.attrs.get("type", "text")
         input_name = input_tag.attrs.get("name")
         inputs.append({"type": input_type, "name": input_name})
-    # put everything to the resulting dictionary
+    # store details in the resulting dictionary
     details["action"] = action
     details["method"] = method
     details["inputs"] = inputs
     return details
 
-def submit_form(form_details, url, value):
+def submit_form(formDetails, url, value):
         """
-        Submits a form given in `form_details`
-        Params:
-            form_details (list): a dictionary that contain form information
-            url (str): the original URL that contain that form
-            value (str): this will be replaced to all text and search inputs
-        Returns the HTTP Response after form submission
+        Submits a form given in `formDetails`
+            formDetails is a dictionary that contain form information
+            value -> this will be replaced to all text and search inputs
+        It will return the HTTP response
         """
-        # construct the full URL (if the url provided in action is relative)
-        target_url = urljoin(url, form_details["action"])
+        # complete the url
+        targetUrl = urljoin(url, formDetails["action"])
         # get the inputs
-        inputs = form_details["inputs"]
+        inputs = formDetails["inputs"]
         data = {}
         for input in inputs:
-            # replace all text and search values with `value`
+            # replace text to search values with `value`
             if input["type"] == "text" or input["type"] == "search":
                 input["value"] = value
             input_name = input.get("name")
             input_value = input.get("value")
             if input_name and input_value:
-                # if input name and value are not None, 
-                # then add them to the data of form submission
                 data[input_name] = input_value
 
-        if form_details["method"] == "post":
-            return requests.post(target_url, data=data)
+        if formDetails["method"] == "post":
+            return requests.post(targetUrl, data=data)
         else:
-            # GET request
-            return requests.get(target_url, params=data)
+            return requests.get(targetUrl, params=data)
 
-def scan_xss(url):
+def check_xss(url):
     """
-    Given a `url`, it prints all XSS vulnerable forms and 
-    returns True if any is vulnerable, False otherwise
+    returns all xss vulnerable in a given URL
     """
-    # get all the forms from the URL
-    forms = get_all_forms(url)
-    js_script = "<script>alert('hi')</scripT>"
-    # returning value
+    #extract forms from the url
+    forms = extract_all_forms(url)
+    xss_payload = "<script>alert('hi')</scripT>"  
+    # flag value
     is_vulnerable = "0"
     # iterate over all forms
     for form in forms:
-        form_details = get_form_details(form)
-        content = submit_form(form_details, url, js_script).content.decode()
-        if js_script in content:
-            return form_details
-            # won't break because we want to print available vulnerable forms
+        formDetails = extract_form_details(form)
+        content = submit_form(formDetails, url, xss_payload).content.decode()
+        if xss_payload in content:
+            return formDetails
 
     return is_vulnerable
     
