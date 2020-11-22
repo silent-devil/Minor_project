@@ -2,7 +2,10 @@ from flask import Flask , render_template , request
 import portScan
 from portScan import portScanner2
 import xssscan
-from xssscan import scan_xss
+from xssscan import check_xss
+import subdomain
+from subdomain import subfinder
+
 app= Flask(__name__)
 
 @app.route('/')
@@ -18,7 +21,12 @@ def ports():
 @app.route('/xss', methods=["GET","POST"])    
 def xss():
     url=request.form['ipaddress']
-    result=scan_xss(url)
+    result=check_xss(url)
     return render_template("xss_scn.html",le=len(result),ur=url,p=result)
+@app.route('/subdomain', methods=["GET","POST"])    
+def subdomain():
+    url=request.form['ipaddress']
+    result=subfinder(url)
+    return render_template("subdomain.html",le=len(result),sublist=result)
 
 app.run(debug= True)
