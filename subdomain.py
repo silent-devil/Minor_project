@@ -12,14 +12,15 @@ def check200(url):
 def subfinder(domain):
     import threading
     import socket
-
+    subdomainList.clear()
     # read all subdomains
     file = open("subs.txt")
     # read all words in the file
     wordlist = file.read()
     # split by new lines
     subdomains = wordlist.splitlines()
-    # t = threading.Thread(target=check200,kwargs={'url':'https://abc.domain'})
+    t = threading.Thread(target=check200,kwargs={'url':'https://abc.domain'})
+    t.start()
     for subdomain in subdomains:
         url = f"http://{subdomain}.{domain}"
         t = threading.Thread(target=check200,kwargs={'url':url})
