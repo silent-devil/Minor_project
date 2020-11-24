@@ -39,11 +39,13 @@ def portscan(port,target):
 def portScanner2(fullip):
     import threading
     import socket
+    resultPorts.clear()
     #list of common ports
     commonPorts=[21,22,23,25,53,80,110,111,135,139,143,389,443,993,995,1723,3306,3389,5900,8080]
     for x in commonPorts:
          t = threading.Thread(target=portscan,kwargs={'port':x,'target':fullip})     
          t.start()
+    t.join()
     return resultPorts
 
 
