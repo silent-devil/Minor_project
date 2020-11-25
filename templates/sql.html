@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../static/css/main.css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Followng urls were vulnerable:</h1>
+    <div class="s003">
+        <ol>
+            <!-- For loop logic of jinja template -->
+            {%for i in range(0, le)%}
+            <h1>
+                <li><a href={{sublist[i]}}>Url {{i}}</a></li>
+            </h1>
+            {%endfor%}
+
+        </ol>
+    </div>
+</body>
+
+</html>
