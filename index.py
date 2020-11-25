@@ -5,6 +5,7 @@ import xssscan
 from xssscan import check_xss
 import subdomain
 from subdomain import subfinder
+from sql import scan_sql_injection
 
 app= Flask(__name__)
 
@@ -23,10 +24,18 @@ def xss():
     url=request.form['ipaddress']
     result=check_xss(url)
     return render_template("xss_scn.html",le=len(result),ur=url,p=result)
+
 @app.route('/subdomain', methods=["GET","POST"])    
 def subdomain():
     url=request.form['ipaddress']
     result=subfinder(url)
     return render_template("subdomain.html",le=len(result),sublist=result)
+
+@app.route('/sql', methods=["GET","POST"])    
+def sql():
+    url=request.form['ipaddress']
+    result=scan_sql_injection(url)
+    return render_template("sql.html",le=len(result),sublist=result)
+
 
 app.run(debug= True)

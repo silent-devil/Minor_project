@@ -1,4 +1,5 @@
 import requests
+import time
 subdomainList=[]
 def check200(url):
         try:
@@ -19,11 +20,15 @@ def subfinder(domain):
     wordlist = file.read()
     # split by new lines
     subdomains = wordlist.splitlines()
-    t = threading.Thread(target=check200,kwargs={'url':'https://abc.domain'})
-    t.start()
+    mythreads=[]
+    # t = threading.Thread(target=check200,kwargs={'url':'https://abc.domain'})
+    # t.start()
     for subdomain in subdomains:
         url = f"http://{subdomain}.{domain}"
         t = threading.Thread(target=check200,kwargs={'url':url})
+        mythreads.append(t)
         t.start()
-    t.join()
+    for th in mythreads:
+        th.join()
     return subdomainList
+
