@@ -51,6 +51,7 @@ def is_vulnerable(response):
 
 
 def scan_sql_injection(url):
+    output.clear()
     for c in "\"'":
         new_url = f"{url}{c}"
         # print("[!] Trying", new_url)
