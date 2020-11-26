@@ -17,6 +17,7 @@
                 <option value="sql">SQL Injection check</option>
                 <option value="ports">Port Scan</option>
                 <option value="subdomain">Domain Scan</option>
+                <option value="discover">File path traversal</option>
               </select>
 
                 <input id="search" class='entervalues' name="ipaddress" type="text" placeholder="Enter your IP or web-adress" />
@@ -34,6 +35,9 @@
                 if (attackType == "xss") {
                     search = document.getElementById("search");
                     search.placeholder = "Please enter full url like http://www.abc.com";
+                } else if (attackType == "discover") {
+                    search = document.getElementById("search");
+                    search.placeholder = "Please enter pnly domain name e.g abc.com";
                 } else {
                     search = document.getElementById("search");
                     search.placeholder = "Please enter IP or URL";

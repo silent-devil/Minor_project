@@ -12,7 +12,6 @@ def check200(url):
             subdomainList.append(url)
 def subfinder(domain):
     import threading
-    import socket
     subdomainList.clear()
     # read all subdomains
     file = open("subs.txt")
