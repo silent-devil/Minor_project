@@ -7,17 +7,18 @@
 </head>
 
 <body>
-    <h1>Followng subdomains were found:</h1>
-    <div class="s003">
+    <h1 class = 'kaji' >Followng subdomains were found:</h1>
+    <div class="hnji">
         <ol>
             <!-- For loop logic of jinja template -->
             {%for i in range(0, le)%}
-            <h1>
+            <h1 class = 'innertext'>
                 <li>{{sublist[i]}}</li>
             </h1>
             {%endfor%}
 
         </ol>
+        <a href = "/"><button>Back</button></a>
     </div>
 </body>
 

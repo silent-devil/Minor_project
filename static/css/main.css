@@ -13,6 +13,8 @@ text-align: center;
 color:green;
 font-size: 40px;
 transform: translateY(100px);
+font-weight: bolder;
+/* text-shadow:1px 1px 1px black; */
 
 }
 
@@ -65,5 +67,33 @@ text-align: center;
 color:green;
 font-size: 40px;
 transform: translateY(150px);
+
+}
+
+.kaji{
+
+  color: green ;
+  text-align: center;
+
+}
+
+.hnji{
+   
+    margin: auto;
+    width :30%;
+    align-items: center;
+
+
+}
+
+.innertext{
+
+  align-self: center;
+}
+
+.kesheho{
+
+  color: green ;
+  text-align: center;
 
 }
