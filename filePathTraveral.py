@@ -17,6 +17,7 @@ def content_discovery(domain):
         url = f"https://{domain}/{path}"
         th = threading.Thread(target=check200,kwargs={'url':url})
         th.start()
+    th.join()
     return discovered
 # content_discovery("shoppinglikes.in")
 

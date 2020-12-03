@@ -18,6 +18,7 @@
                 <option value="ports">Port Scan</option>
                 <option value="subdomain">Domain Scan</option>
                 <option value="discover">File path traversal</option>
+                <option value="fullscan">Complete scan</option>
               </select>
 
                 <input id="search" class='entervalues' name="ipaddress" type="text" placeholder="Enter your IP or web-adress" />
@@ -34,7 +35,7 @@
                 formAction.action = attackType;
                 if (attackType == "xss") {
                     search = document.getElementById("search");
-                    search.placeholder = "Please enter full url like http://www.abc.com";
+                    search.placeholder = "Please enter full url like abc.com";
                 } else if (attackType == "discover") {
                     search = document.getElementById("search");
                     search.placeholder = "Please enter pnly domain name e.g abc.com";

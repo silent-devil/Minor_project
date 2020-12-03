@@ -1,4 +1,6 @@
-from flask import Flask , render_template , request
+from flask import Flask , render_template , request , make_response
+import pdfkit
+import os
 app= Flask(__name__)
 
 @app.route('/')
@@ -44,6 +46,38 @@ def discover():
     domain=request.form['ipaddress']
     result=content_discovery(domain)
     return render_template("filePathTraversal.html",le=len(result),sublist=result)
+
+@app.route('/fullscan', methods=["GETS","POST"])
+def fullscan():
+    import portScan
+    from portScan import portScanner2
+
+    import xssscan
+    from xssscan import check_xss
+    
+    import subdomain
+    from subdomain import subfinder
+    
+    import filePathTraveral
+    from filePathTraveral import content_discovery
+
+    url=request.form['ipaddress']
+
+    rePort=portScanner2(url)
+    reXss=check_xss(url)
+    resub=subfinder(url)
+    reFileTravesal=content_discovery(url)
+
+    rendered = render_template("allscan.html",leport=len(rePort),portre=rePort,lexss=len(reXss),ur=url,xssre=reXss,lesubdom=len(resub),resubdom=resub,lefile=len(reFileTravesal),refile=reFileTravesal)
+    pdf= pdfkit.from_string(rendered, False)
+
+    response=make_response(pdf)
+    response.headers['Content-Type']='application/pdf'
+    response.headers['Content-Disposition']= 'inline; filename=output.pdf' 
+
+    return response
+
+
 
 
 app.run(debug= True)
