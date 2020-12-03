@@ -14,7 +14,10 @@ def extract_form_details(form):
     """
     details = {}
     # extract the form action
-    action = form.attrs.get("action").lower()
+    try:
+        action = form.attrs.get("action").lower()
+    except:
+        action = ""
     # extract the form method e.g GET,POST etc
     method = form.attrs.get("method", "get").lower()
     # extract all the input details such as type and name
@@ -60,6 +63,7 @@ def check_xss(url):
     returns all xss vulnerable in a given URL
     """
     #extract forms from the url
+    url="https://www."+url
     forms = extract_all_forms(url)
     xss_payload = "<script>alert('hi')</scripT>"  
     # flag value
