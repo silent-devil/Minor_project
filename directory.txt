@@ -1,7 +1,10 @@
 assets
 index
 images
+wp-content/uploads
+xmlrpc.php
 download
+dashboard
 contact
 about
 search
@@ -10,14 +13,12 @@ privacy
 logo
 blog
 new
-10
 cgi-bin
 faq
 rss
 home
 img
 default
-2005
 products
 sitemap
 archives
