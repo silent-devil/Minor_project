@@ -1,16 +1,9 @@
-			# Run the following commands after cloning for the first time
-
-	1.In the project directory,type->
-	#pip3 install virtualenv
-	#virtualenv env
-	#source env/bin/activate
-	#pip3 install FLASK
-	#export FLASK_APP=index.py
-	3.python3 index.py (or python index.py)
-	4.Open browser -> 127.0.0.1:5000
-	5.pip install pdfkit
-	6.sudo apt install wkhtmtopdf
-
-	You can exit the virtualenv by typing "deactivate"
-	To enter virtualenv again, type "source env/bin/activate" in
-        project directory
+##Dependencies:
+1.pip3
+2.Beautifulsoup
+3.Flask
+4.wkhtmltopdf
+5.request module
+6.socket module
+7.threading module
+Please install all of the above for smooth functioning of the frameowrk.
