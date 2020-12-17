@@ -23,5 +23,7 @@ Please install all of the above for smooth functioning of the frameowrk.
 2.[Vivek Dwivedu](https://github.com/silent-devil)
 3.[Dheeraj Kumar](https://github.com/padfoot0)
 
-**Scope**
+**Scope:**
+
+
 We are planning to include all owasp top 10 vulnerabilities. Feel free to contribute.
