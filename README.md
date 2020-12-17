@@ -8,12 +8,26 @@ There are options for subdomain enumeration and port scanning too. The *complete
 
 
 1.[pip3](https://pip.pypa.io/en/stable/installing/#) 
+
+
 2.Beautifulsoup
+
+
 3.Flask
+
+
 4.wkhtmltopdf
+
+
 5.request module
+
+
 6.socket module
+
+
 7.threading module
+
+
 Please install all of the above for smooth functioning of the frameowrk.
 
 **Developed by**
