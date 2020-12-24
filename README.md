@@ -34,7 +34,7 @@ Please install all of the above for smooth functioning of the frameowrk.
 
 
 1.[Aamir Ahmad](https://github.com/sickwiz)
-2.[Vivek Dwivedu](https://github.com/silent-devil)
+2.[Vivek Dwivedi](https://github.com/silent-devil)
 3.[Dheeraj Kumar](https://github.com/padfoot0)
 
 **Scope:**
